@@ -1,3 +1,3 @@
 
-FROM docker.io/cybermaggedon/sparql-sleuth
+FROM docker.io/cybermaggedon/sparql-sleuth:1.8.5
 
