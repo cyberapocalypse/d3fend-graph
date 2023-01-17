@@ -1,0 +1,7 @@
+{
+    "id": "d3fend",
+    "catalogue": "catalogue.ttl",
+    "processing": "turtle",
+    "input": "d3fend.ttl"
+}
+

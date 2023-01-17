@@ -1,0 +1,270 @@
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix d3: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+d3:kb-reference-of a rdfs:Property .
+d3:attack-id a rdfs:Property .
+d3:kb-reference-title a rdfs:Property .
+
+owl:onProperty a rdfs:Property .
+owl:someValuesFrom a rdfs:Property .
+
+d3:accesses a rdfs:Property .
+
+d3:addressed-by a rdfs:Property .
+
+d3:addresses a rdfs:Property .
+
+d3:adds a rdfs:Property .
+
+d3:analyzes a rdfs:Property .
+
+d3:archived-at a rdfs:Property .
+
+d3:attached-to a rdfs:Property .
+
+d3:authenticates a rdfs:Property .
+
+d3:authorizes a rdfs:Property .
+
+d3:blocks a rdfs:Property .
+
+d3:broader a rdfs:Property .
+
+d3:configures a rdfs:Property .
+
+d3:connects a rdfs:Property .
+
+d3:contains a rdfs:Property .
+
+d3:contributor a rdfs:Property .
+
+d3:control-name a rdfs:Property .
+
+d3:copies a rdfs:Property .
+
+d3:created a rdfs:Property .
+
+d3:creates a rdfs:Property .
+
+d3:d3fend-comment a rdfs:Property .
+
+d3:d3fend-id a rdfs:Property .
+
+d3:definition a rdfs:Property .
+
+d3:deletes a rdfs:Property .
+
+d3:dependent a rdfs:Property .
+
+d3:disables a rdfs:Property .
+
+d3:display-order a rdfs:Property .
+
+d3:display-priority a rdfs:Property .
+
+d3:drives a rdfs:Property .
+
+d3:enables a rdfs:Property .
+
+d3:encrypts a rdfs:Property .
+
+d3:evaluates a rdfs:Property .
+
+d3:exactly a rdfs:Property .
+
+d3:executes a rdfs:Property .
+
+d3:extends a rdfs:Property .
+
+d3:filters a rdfs:Property .
+
+d3:forges a rdfs:Property .
+
+d3:hardens a rdfs:Property .
+
+d3:has-account a rdfs:Property .
+
+d3:has-link a rdfs:Property .
+
+d3:has-member a rdfs:Property .
+
+d3:has-recipient a rdfs:Property .
+
+d3:has-sender a rdfs:Property .
+
+d3:hides a rdfs:Property .
+
+d3:identifies a rdfs:Property .
+
+d3:implements a rdfs:Property .
+
+d3:injects a rdfs:Property .
+
+d3:installs a rdfs:Property .
+
+d3:interprets a rdfs:Property .
+
+d3:inventories a rdfs:Property .
+
+d3:invokes a rdfs:Property .
+
+d3:isolates a rdfs:Property .
+
+d3:kb-abstract a rdfs:Property .
+
+d3:kb-article a rdfs:Property .
+
+d3:kb-author a rdfs:Property .
+
+d3:kb-mitre-analysis a rdfs:Property .
+
+d3:kb-organization a rdfs:Property .
+
+d3:kb-reference a rdfs:Property .
+
+d3:loads a rdfs:Property .
+
+d3:manages a rdfs:Property .
+
+d3:maps a rdfs:Property .
+
+d3:may-access a rdfs:Property .
+
+d3:may-add a rdfs:Property .
+
+d3:may-contain a rdfs:Property .
+
+d3:may-create a rdfs:Property .
+
+d3:may-execute a rdfs:Property .
+
+d3:may-interpret a rdfs:Property .
+
+d3:may-invoke a rdfs:Property .
+
+d3:may-map a rdfs:Property .
+
+d3:may-modify a rdfs:Property .
+
+d3:may-produce a rdfs:Property .
+
+d3:may-query a rdfs:Property .
+
+d3:may-run a rdfs:Property .
+
+d3:may-transfer a rdfs:Property .
+
+d3:member-of a rdfs:Property .
+
+d3:modifies a rdfs:Property .
+
+d3:monitors a rdfs:Property .
+
+d3:narrower a rdfs:Property .
+
+d3:neutralizes a rdfs:Property .
+
+d3:next a rdfs:Property .
+
+d3:obfuscates a rdfs:Property .
+
+d3:originates-from a rdfs:Property .
+
+d3:pref-label a rdfs:Property .
+
+d3:process-image-path a rdfs:Property .
+
+d3:process-user a rdfs:Property .
+
+d3:produces a rdfs:Property .
+
+d3:provider a rdfs:Property .
+
+d3:published a rdfs:Property .
+
+d3:queries a rdfs:Property .
+
+d3:reads a rdfs:Property .
+
+d3:records a rdfs:Property .
+
+d3:related a rdfs:Property .
+
+d3:release-date a rdfs:Property .
+
+d3:restricts a rdfs:Property .
+
+d3:runs a rdfs:Property .
+
+d3:spoofs a rdfs:Property .
+
+d3:start a rdfs:Property .
+
+d3:strengthens a rdfs:Property .
+
+d3:summarizes a rdfs:Property .
+
+d3:synonym a rdfs:Property .
+
+d3:terminates a rdfs:Property .
+
+d3:unmounts a rdfs:Property .
+
+d3:updates a rdfs:Property .
+
+d3:use-limits a rdfs:Property .
+
+d3:uses a rdfs:Property .
+
+d3:validates a rdfs:Property .
+
+d3:verifies a rdfs:Property .
+
+d3:version a rdfs:Property .
+
+dcterms:description a rdfs:Property .
+
+dcterms:license a rdfs:Property .
+
+dcterms:title a rdfs:Property .
+
+rdf:first a rdfs:Property .
+
+rdf:rest a rdfs:Property .
+
+rdfs:isDefinedBy a rdfs:Property .
+
+owl:allValuesFrom a rdfs:Property .
+
+owl:cardinality a rdfs:Property .
+
+owl:disjointWith a rdfs:Property .
+
+owl:hasValue a rdfs:Property .
+
+owl:inverseOf a rdfs:Property .
+
+owl:members a rdfs:Property .
+
+owl:onDataRange a rdfs:Property .
+
+owl:oneOf a rdfs:Property .
+
+owl:propertyChainAxiom a rdfs:Property .
+
+owl:qualifiedCardinality a rdfs:Property .
+
+owl:unionOf a rdfs:Property .
+
+owl:versionInfo a rdfs:Property .
+
+owl:versionIRI a rdfs:Property .
+
+skos:altLabel a rdfs:Property .
+
+ 

@@ -1,0 +1,123 @@
+
+name: Deploy to production
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+  id-token: 'write'
+
+jobs:
+
+  deploy:
+
+    name: Deploy to production
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get version
+        id: version
+        run: echo VERSION=sha-$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
+
+      - name: Install packages
+        run: sudo apt update &&
+            sudo apt install -y redland-utils librdf-storage-sqlite &&
+            sudo apt install -y python3-rdflib
+
+      - name: Assemble RDF data
+        run: make curate
+
+      - name: Extract metadata for web container
+        id: meta-web
+        uses: docker/metadata-action@v4
+        with:
+          images: web
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
+
+      - name: Extract metadata for sparql container
+        id: meta-sparql
+        uses: docker/metadata-action@v4
+        with:
+          images: sparql
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
+
+      - id: auth
+        name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v0
+        with:
+          token_format: access_token
+          workload_identity_provider: projects/1078313120119/locations/global/workloadIdentityPools/deploy/providers/deploy
+          service_account: deploy@cyberapocalypse.iam.gserviceaccount.com
+          access_token_lifetime: 600s
+          create_credentials_file: true
+
+      - name: Login to Artifact Registry
+        uses: docker/login-action@v1
+        with:
+          registry: europe-west1-docker.pkg.dev
+          username: oauth2accesstoken
+          password: ${{ steps.auth.outputs.access_token }}
+
+      - name: Build and push web
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: false
+          tags: ${{ steps.meta-web.outputs.tags }}
+          labels: ${{ steps.meta-web.outputs.labels }}
+          file: Containerfile.web
+
+      - name: Build and push sparql
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: false
+          tags: ${{ steps.meta-sparql.outputs.tags }}
+          labels: ${{ steps.meta-sparql.outputs.labels }}
+          file: Containerfile.sparql
+
+      - name: Install Pulumi
+        run: cd pulumi && npm install
+
+      - name: Applying infrastructure 🚀🙏
+        uses: pulumi/actions@v3
+        with:
+          command: up
+          stack-name: prod
+          work-dir: pulumi
+          cloud-url: gs://cyberapocalypse-deploy/d3fend/prod
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ""
+          WEB_IMAGE_VERSION: ${{ steps.version.outputs.VERSION }}
+          SPARQL_IMAGE_VERSION: ${{ steps.version.outputs.VERSION }}
+          GCP_PROJECT: cyberapocalypse
+          GCP_REGION: europe-west1
+          CLOUD_RUN_REGION: europe-west1
+          ARTIFACT_REPO: europe-west1-docker.pkg.dev/cyberapocalypse/d3fend
+          ARTIFACT_NAME: d3fend
+          ARTIFACT_REPO_REGION: europe-west1
+          SPARQL_MIN_SCALE: "0"
+          SPARQL_MAX_SCALE: "1"
+          WEB_MIN_SCALE: "0"
+          WEB_MAX_SCALE: "1"
+          ENVIRONMENT: "prod"

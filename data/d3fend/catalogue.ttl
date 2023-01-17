@@ -1,0 +1,15 @@
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://e623fd-ukraine/> .
+@prefix dbpedia: <http://dbpedia.org/ontology/> .
+@prefix dataset: <http://pivotlabs.vc/innov/dataset/> .
+@prefix schema: <https://schema.org/> .
+
+dataset:d3fend
+  a schema:Dataset ;
+  rdfs:label "MITRE D3fend" ;
+  schema:headline "MITRE D3fend" ;
+  schema:keywords "d3fend"@en, "mitre"@en, "cybersecurity"@en;
+  schema:description "a cybersecurity countermeasure knowledge base" .
+
