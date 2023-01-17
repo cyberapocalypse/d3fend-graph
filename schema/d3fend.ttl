@@ -267,4 +267,6 @@ owl:versionIRI a rdfs:Property .
 
 skos:altLabel a rdfs:Property .
 
- 
+<https://schema.org/headline> a rdfs:Property .
+<https://schema.org/keywords> a rdfs:Property .
+<https://schema.org/description> a rdfs:Property .
